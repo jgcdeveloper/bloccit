@@ -9,7 +9,8 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.getAllPosts
+
     @filterPosts = 5
 
     spamFilter(@posts, @filterPosts)

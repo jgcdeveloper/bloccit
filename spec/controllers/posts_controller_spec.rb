@@ -10,7 +10,7 @@ RSpec.describe PostsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
 
-    it "assigns [my_post] to @post" do
+    it "assigns [my_post] to @posts" do
       get :index
       expect(assigns(:posts)).to eq([my_post])
     end
@@ -52,7 +52,7 @@ RSpec.describe PostsController, type: :controller do
 
   end
 
-  describe "POST create" do
+  describe "POST #create" do
 
     it "increases the number of posts by 1" do
       expect{post :create, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}}.to change(Post, :count).by(1)

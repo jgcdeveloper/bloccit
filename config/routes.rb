@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :posts
+  resources :advertisements
 
   #Get Requests to create routes for our view
 

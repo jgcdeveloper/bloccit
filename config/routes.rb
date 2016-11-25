@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :questions
+
   resources :posts
 
   #Get Requests to create routes for our view

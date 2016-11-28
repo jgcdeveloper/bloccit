@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :topics
   resources :posts
 
   #Get Requests to create routes for our view

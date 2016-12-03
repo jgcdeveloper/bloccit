@@ -35,3 +35,6 @@ gem 'turbolinks'
 
 # Bootstrap CSS Framework
 gem 'bootstrap-sass'
+
+# Secure Password
+gem 'bcrypt'

@@ -45,18 +45,34 @@ def make_seeds(seed_topics,seed_users,seed_posts,seed_comments)
 
   # Non Random First User Seed
   user = User.first
+
   user.update_attributes!(
-    name: "Jason Clegg(Dev)",
+    name: "Jason Clegg (Dev)",
     email: "jgcdeveloper@gmail.com",
-    password: "Hello World"
+    password: "123456"
+  )
+
+ # Create an admin user
+  admin = User.create!(
+    name:     'Admin User',
+    email:    'admin@example.com',
+    password: '123456',
+    role:     'admin'
+  )
+
+ # Create a member
+  member = User.create!(
+    name:     'Member User',
+    email:    'member@example.com',
+    password: 'testing'
   )
 
   puts "Seed Finished"
-  puts "#{Topic.count} posts created"
+  puts "#{Topic.count} topics created"
   puts "#{User.count} users created"
   puts "#{Post.count} posts created"
   puts "#{Comment.count} comments created"
 
 end
 
-make_seeds(3,3,12,36)
+make_seeds(3,6,36,216)

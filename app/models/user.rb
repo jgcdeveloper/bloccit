@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   before_save {
     self.email = email.downcase if email.present?
     self.name = name.split(' ').each{|name| name.capitalize!}.join(' ') if name.present?
+    self.role ||= :member
   }
 
 
@@ -27,5 +28,7 @@ class User < ActiveRecord::Base
     allow_blank: true
 
   has_secure_password
+
+  enum role: [:member, :admin]
 
 end

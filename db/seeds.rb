@@ -1,39 +1,62 @@
 require 'random_data'
 
-def make_seeds(seed_topics,seed_posts,seed_comments)
-# Create topics
+def make_seeds(seed_topics,seed_users,seed_posts,seed_comments)
+
+  # Create topics
   seed_topics.times do
     Topic.create!(
       name: RandomData.random_sentence,
       description: RandomData.random_paragraph
-      )
-    end
+    )
+  end
 
-    topics = Topic.all
+  topics = Topic.all
 
-    # Create Posts
+  #Create users
+  seed_users.times do
+    User.create!(
+      name: RandomData.random_name,
+      email: RandomData.random_email,
+      password: RandomData.random_sentence
+    )
+  end
+
+  users = User.all
+
+  # Create Posts
   seed_posts.times do
     Post.create!(
+      user: users.sample,
       topic: topics.sample,
       title: RandomData.random_sentence,
       body: RandomData.random_paragraph
-      )
-    end
+    )
+  end
 
-    posts = Post.all
+  posts = Post.all
 
-    # Create Comments
-    seed_comments.times do
-      Comment.create!(
-        post: posts.sample,
-        body: RandomData.random_paragraph
-        )
-    end
+  # Create Comments
+  seed_comments.times do
+    Comment.create!(
+      post: posts.sample,
+      body: RandomData.random_paragraph
+    )
+  end
 
-    puts "Seed Finished"
-    puts "#{Topic.count} posts created"
-    puts "#{Post.count} posts created"
-    puts "#{Comment.count} comments created"
+  # Non Random First User Seed
+  user = User.first
+  user.update_attributes!(
+    name: "Jason Clegg(Dev)",
+    email: "jgcdeveloper@gmail.com",
+    password: "Hello World"
+  )
+
+  puts "Seed Finished"
+  puts "#{Topic.count} posts created"
+  puts "#{User.count} users created"
+  puts "#{Post.count} posts created"
+  puts "#{Comment.count} comments created"
+
 end
 
-make_seeds(3,9,27)
+make_seeds(3,3,12,36)

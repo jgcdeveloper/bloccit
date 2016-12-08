@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  has_many :posts
+
   before_save {
     self.email = email.downcase if email.present?
     self.name = name.split(' ').each{|name| name.capitalize!}.join(' ') if name.present?

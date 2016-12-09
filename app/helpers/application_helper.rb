@@ -4,6 +4,6 @@ module ApplicationHelper
     css_class = 'form-group'
     css_class << ' has-error' if errors.any?
     content_tag :div, capture(&block), class: css_class
-   end
+  end
 
 end

@@ -13,20 +13,21 @@ class TopicsController < ApplicationController
   end
 
   def new
-    @topic = Topic.new
+
+      @topic = Topic.new
+
   end
 
   def create
 
-    @topic = Topic.new(topic_params)
+      @topic = Topic.new(topic_params)
 
-    if @topic.save
-         redirect_to @topic, notice: "Topic was saved successfully."
+      if @topic.save
+        redirect_to @topic, notice: "Topic was saved successfully."
       else
-         flash.now[:alert] = "Error creating topic. Please try again."
-         render :new
-    end
-
+        flash.now[:alert] = "Error creating topic. Please try again."
+        render :new
+      end
   end
 
   def edit
@@ -64,14 +65,18 @@ class TopicsController < ApplicationController
   private
 
   def topic_params
+
     params.require(:topic).permit(:name, :description, :public)
+
   end
 
   def authorize_user
-    unless current_user.admin?
+
+    unless current_user.admin? || (current_user.moderator? && (params[:action] == "edit" || params[:action] == "update") )
       flash[:alert] = "You must be an admin to do that."
       redirect_to topics_path
     end
+
   end
 
 end

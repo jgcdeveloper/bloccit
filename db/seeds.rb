@@ -38,6 +38,7 @@ def make_seeds(seed_topics,seed_users,seed_posts,seed_comments)
   # Create Comments
   seed_comments.times do
     Comment.create!(
+      user: users.sample,
       post: posts.sample,
       body: RandomData.random_paragraph
     )

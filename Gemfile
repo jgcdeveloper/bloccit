@@ -38,3 +38,6 @@ gem 'bootstrap-sass'
 
 # Secure Password
 gem 'bcrypt'
+
+# Figaro Masking
+gem 'figaro', '1.0'

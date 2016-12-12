@@ -85,6 +85,22 @@ RSpec.describe Post, type: :model do
 
     end
 
+    describe "#auto_vote" do
+
+      it "calls create_vote when a post is created" do
+          new_user = User.new(name: "Bloccit Test User", email: "test_user@bloccit.com", password: "123456")
+          new_post = topic.posts.new(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: new_user)
+          expect(new_post).to receive(:auto_vote)
+          new_post.save
+      end
+
+      it "associates votes with the user" do
+          new_post = topic.posts.new(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+          expect(post.votes.first.user).to eq(new_post.user)
+      end
+
+    end
+
   end
 
 end

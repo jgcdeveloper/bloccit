@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+
+  <body>
+
+    <h1> Following: "<%= @post.title %>" on Bloccit</h1>
+    <p> You should recieve notification of all comments</p>
+    <p> <%= link_to "View Post on Site", topic_post_url(@post.topic, @post) %> </p>
+
+  </body>
+
+</html>

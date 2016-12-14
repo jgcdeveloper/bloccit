@@ -36,7 +36,6 @@
 <% end %>
 
 <h2>Comments:</h2>
-<br />
 
 <% if @user.has_comments %>
   <%= render @user.comments %>
@@ -53,18 +52,16 @@
   <div class="row">
 
       <div class="col-md-1">
-        <p> Author Gravitar </p>
+        <% post_avatar = find_gravitar_from_post_author(fp,48) %>
+        <%= image_tag post_avatar, class: 'media-object post_author' %>
       </div>
 
-      <div class="col-md-9">
-        <p> <%= fp.title %> </p>
-        <p> <%= fp.body %> </p>
+      <div class="col-md-11">
+        <%= render fp %>
+        <br />
       </div>
 
-      <div class="col-md-2">
-        <p> Number of Votes: </p>
-        <p> Number of Comments: </p>
-      </div>
 
   </div>
+
 <% end %>

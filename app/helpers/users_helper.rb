@@ -14,4 +14,11 @@ module UsersHelper
 
   end
 
+  def find_gravitar_from_post_author(post,size)
+    author = User.find(post.user_id)
+    email = author.email
+    gravatar_id = Digest::MD5::hexdigest(email).downcase
+    "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
+  end
+
 end

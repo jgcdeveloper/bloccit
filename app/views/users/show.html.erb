@@ -26,8 +26,45 @@
 
 </div>
 
-<h2>Posts</h2>
-<%= render @user.posts %>
+<h2>Posts:</h2>
 
-<h2>Comments</h2>
-<%= render @user.comments %>
+<% if @user.has_posts %>
+  <%= render @user.posts %>
+<% else %>
+  <br />
+  <p> <%= @user.name %> has not made any posts yet</p>
+<% end %>
+
+<h2>Comments:</h2>
+<br />
+
+<% if @user.has_comments %>
+  <%= render @user.comments %>
+<% else %>
+  <br />
+  <p> <%= @user.name %> has not made any comments yet</p>
+<% end %>
+
+<h2> Favorite Posts: </h2>
+
+<% fav_posts = return_posts_favored_by_user(@user) %>
+
+<% fav_posts.each do |fp| %>
+  <div class="row">
+
+      <div class="col-md-1">
+        <p> Author Gravitar </p>
+      </div>
+
+      <div class="col-md-9">
+        <p> <%= fp.title %> </p>
+        <p> <%= fp.body %> </p>
+      </div>
+
+      <div class="col-md-2">
+        <p> Number of Votes: </p>
+        <p> Number of Comments: </p>
+      </div>
+
+  </div>
+<% end %>
